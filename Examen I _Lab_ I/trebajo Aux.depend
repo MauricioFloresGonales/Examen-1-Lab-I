@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1571098644 source:c:\users\pipoca\desktop\trebajo aux\peliculas.c
+	<stdio.h>
+	<string.h>
+	"peliculas.h"
+
+1571094742 c:\users\pipoca\desktop\trebajo aux\peliculas.h
+
+1571094961 source:c:\users\pipoca\desktop\trebajo aux\actores.c
+	"actores.h"
+
+1571094961 c:\users\pipoca\desktop\trebajo aux\actores.h
+	<stdio.h>
+	"Inputs.h"
+
+1570978245 c:\users\pipoca\desktop\trebajo aux\inputs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1570978245 source:c:\users\pipoca\desktop\trebajo aux\inputs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Inputs.h"
+	<ctype.h>
+	<conio.h>
+
+1571107768 source:c:\users\pipoca\desktop\trebajo aux\elenco.c
+	"elenco.h"
+
+1571101751 source:c:\users\pipoca\desktop\trebajo aux\main.c
+	<stdio.h>
+	<stdlib.h>
+	"elenco.h"
+
+1571103569 c:\users\pipoca\desktop\trebajo aux\elenco.h
+	"actores.h"
+	"peliculas.h"
+
