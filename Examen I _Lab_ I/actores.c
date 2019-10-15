@@ -236,3 +236,32 @@ void borrarActor(eActor actores[],int len)
 
     actores[index].estado = LIBRE;
 }
+
+//---------------------------------------------------------------------------------------------------------------------
+
+int validarCodiigoDeActores(eActor actores[],int ta)
+{
+    int i;
+    int flag = -1;
+    int numero;
+
+    MostrarActores(actores,ta);
+
+    while( flag != 0)
+    {
+        printf("Ingrese el codigo de un Actor para el Elenco: ");
+        scanf("%d",&numero);
+
+        for(i=0;i<ta;i++)
+        {
+            if(numero == actores[i].codigo)
+            {
+                flag=0;
+                break;
+            }
+        }
+    }
+
+    return numero;
+
+}

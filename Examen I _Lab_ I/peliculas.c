@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "Inputs.h"
 
 #include "peliculas.h"
 
@@ -179,4 +180,32 @@ void MostrarPeliculas(ePelicula peliculas[],int len,eGenero generos[],int tg)
     {
         printf("No hay Peliculas para mostrar\n");
     }
+}
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+int validarCodigoDePelicula(ePelicula peliculas[],int tp,eGenero generos[],int tg)
+{
+    int i;
+    int flag = -1;
+    int numero;
+
+    MostrarPeliculas(peliculas,tp,generos,tg);
+
+    while( flag != 0)
+    {
+        printf("ingrese el codigo de una pelicula: ");
+        scanf("%d",&numero);
+
+        for(i=0;i<tp;i++)
+        {
+            if(numero == peliculas[i].codigo)
+            {
+                flag=0;
+                break;
+            }
+        }
+    }
+
+    return numero;
 }

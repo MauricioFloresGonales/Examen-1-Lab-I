@@ -80,12 +80,10 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
     int i;
     int j;
 
-    MostrarPeliculas(peliculas,tp,generos,tg);
-
     index = indiceLibreElenco(elencos,te);
 
-    printf("ingrese el codigo de una pelicula: ");
-    scanf("%d",&codePelicula);
+    codePelicula = validarCodigoDePelicula(peliculas,tp,generos,tg);
+
 
     for(i=0;i<te;i++)
     {
@@ -93,10 +91,7 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
         {
             elencos[index].codigoDePelicula = peliculas[i].codigo;
 
-            MostrarActores(actores,ta);
-
-            printf("Ingrese el codigo de un Actor para el Elenco: ");
-            scanf("%d",&codeActor);
+            codeActor = validarCodiigoDeActores(actores,ta);
 
             for(j=0;j<ta;j++)
             {
@@ -152,7 +147,7 @@ void mostrarUnElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eActo
     int k;
     int idPelicula = 0;
 
-    printf(" Peliculas:\t\t\tActores:\n\n");
+    printf(" Peliculas:\t\t\t\tActores:\t\tValor del Contratos:\n\n");
 
     while(idPelicula != idMayorPeliculas(peliculas,tp,1))
     {
@@ -166,7 +161,7 @@ void mostrarUnElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eActo
                     {
                         if(elencos[i].codigoDeActor == actores[k].codigo)
                         {
-                            printf(" %s\t\t\t%-10s\t%d\n",peliculas[idPelicula].descripcion,actores[k].apellido,elencos[i].valorContrato);
+                            printf(" %s\t\t%22s\t\t%15d\n",peliculas[idPelicula].descripcion,actores[k].apellido,elencos[i].valorContrato);
                         }
                     }
                 }

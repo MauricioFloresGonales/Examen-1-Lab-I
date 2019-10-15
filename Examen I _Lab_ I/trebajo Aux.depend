@@ -39,3 +39,44 @@
 	"actores.h"
 	"peliculas.h"
 
+1571110979 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\actores.c
+	"actores.h"
+
+1571110979 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\actores.h
+	<stdio.h>
+	"Inputs.h"
+
+1571109365 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\inputs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1571110979 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\elenco.c
+	"elenco.h"
+
+1571111130 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\elenco.h
+	"actores.h"
+	"peliculas.h"
+
+1571110979 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.h
+
+1571109365 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\inputs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Inputs.h"
+	<ctype.h>
+	<conio.h>
+
+1571109365 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\main.c
+	<stdio.h>
+	<stdlib.h>
+	"elenco.h"
+
+1571111036 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.c
+	<stdio.h>
+	<string.h>
+	"Inputs.h"
+	"peliculas.h"
+
