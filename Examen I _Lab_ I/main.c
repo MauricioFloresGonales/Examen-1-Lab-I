@@ -30,19 +30,22 @@ int main()
         printf("2- Gestion de Elencos:\n");
         printf("3- salir:\n");
 
-        printf("elija una opcion:\n");
-        scanf("%d", &opcion);
+        getInt(&opcion,"Elija una opcion:\n","Solo puede ingresar los numeros del menu",1,3);
 
         switch(opcion)
         {
         case 1:
+            system("cls");
             menuActores(actores,TA);
             break;
         case 2:
+            system("cls");
             menuElencos(elencos,TE,peliculas,TP,generos,TG,actores,TA);
             break;
-        default:
+        case 3:
             printf("SALIR\n");
+        default:
+            printf("Vuelva a intentar\n");
         }
 
     system("pause");

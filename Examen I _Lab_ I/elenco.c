@@ -15,12 +15,15 @@ void menuElencos(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero g
             case 2:
                 //listarElencos(elencos,te,peliculas,tp,actores,ta);
                 mostrarUnElenco(elencos,te,peliculas,tp,actores,ta);
+                system("pause");
+                break;
+            case 3:
+                printf("Salir\n");
                 break;
             default:
-                printf("salir");
-
+                printf("No ingreso ninguna de las opciones\n");
             }
-
+        system("cls");
     }while(opcion != 2);
 }
 
@@ -74,6 +77,7 @@ int indiceLibreElenco(eElenco elencos[],int len)
 
 void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[],int tg,eActor actores[],int ta)
 {
+    eElenco auxElenco;
     int index;
     int codePelicula;
     int codeActor;
@@ -89,20 +93,30 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
     {
         if(codePelicula == peliculas[i].codigo)
         {
-            elencos[index].codigoDePelicula = peliculas[i].codigo;
+            auxElenco.codigoDePelicula = peliculas[i].codigo;
 
-            codeActor = validarCodiigoDeActores(actores,ta);
+            codeActor = validarCodigoDeActores(actores,ta);
 
             for(j=0;j<ta;j++)
             {
                 if(codeActor == actores[j].codigo)
                 {
-                    elencos[index].codigoDeActor = actores[j].codigo;
+                    auxElenco.codigoDeActor = actores[j].codigo;
 
-                    while(getInt(&elencos[index].valorContrato,"ingrese el valor del Contrato: ","Error,el contrato no puede pasar de 1.000.000",0,1000000)!=0);
+                    while(getInt(&auxElenco.valorContrato,"ingrese el valor del Contrato: ","Error,el contrato no puede pasar de 1.000.000",0,1000000)!=0);
                 }
             }
         }
+    }
+
+    if(confirmar("Confirmar:","Canselar:")==0)
+    {
+        elencos[index].codigoDePelicula = auxElenco.codigoDePelicula;
+        elencos[index].codigoDeActor = auxElenco.codigoDeActor;
+        elencos[index].valorContrato = auxElenco.valorContrato;
+
+    }else{
+        printf("La operecion fue cancelada.\n");
     }
 }
 
@@ -147,7 +161,7 @@ void mostrarUnElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eActo
     int k;
     int idPelicula = 0;
 
-    printf(" Peliculas:\t\t\t\tActores:\t\tValor del Contratos:\n\n");
+    printf(" Peliculas:\t\t\t\t\tActores:\t\tValor del Contratos:\n\n");
 
     while(idPelicula != idMayorPeliculas(peliculas,tp,1))
     {
@@ -159,15 +173,18 @@ void mostrarUnElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eActo
                 {
                     for(k=0;k<ta;k++)
                     {
-                        if(elencos[i].codigoDeActor == actores[k].codigo)
+                        if(elencos[i].codigoDeActor == actores[k].codigo && actores[k].estado != LIBRE)
                         {
-                            printf(" %s\t\t%22s\t\t%15d\n",peliculas[idPelicula].descripcion,actores[k].apellido,elencos[i].valorContrato);
+                            printf(" %-20s",peliculas[idPelicula].descripcion);
+                            printf("\t\t%22s",actores[k].apellido);
+                            printf("\t\t%22d\n",elencos[i].valorContrato);
                         }
                     }
                 }
             }
 
         }
+    printf("\n");
 
         idPelicula++;
     }

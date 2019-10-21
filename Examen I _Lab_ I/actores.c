@@ -5,8 +5,7 @@ void menuActores(eActor actores[],int len)
     int opcion;
 
     do{
-            printf("Opciones:\n1- Alta\n2- Modificar\n3- Baja\n4- Listar\n5- Salir\nElija una Opcion: ");
-            scanf("%d",&opcion);
+            getInt(&opcion,"Opciones:\n1- Alta\n2- Modificar\n3- Baja\n4- Listar\n5- Salir\nElija una Opcion: ","Solo puede ingresar los numeros del menu",1,5);
             switch(opcion)
             {
             case 1:
@@ -18,17 +17,22 @@ void menuActores(eActor actores[],int len)
                 break;
             case 3:
                 MostrarActores(actores,len);
-                 borrarActor(actores,len);
+                borrarActor(actores,len);
                 break;
             case 4:
                 MostrarActores(actores,len);
+                system("pause");
+                break;
+            case 5:
+                printf("Salir\n");
                 break;
             default:
-                printf("salir");
+                printf("Vuelva a intentar\n");
 
             }
+        system("cls");
 
-    }while(opcion != 4);
+    }while(opcion != 5);
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -37,7 +41,7 @@ void harcodeoActores(eActor actores[],int len)
 {
     char nombre[][51]={"ana","juan","pepe","rosa","carlos"};
     char apellido[][51]={"catunta","gonzalez","mesa","sanchez"};
-    char sexo[]={'m','h','h','m','h'};
+    char sexo[]={'f','m','m','f','m'};
     int estado[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
     int i;
 
@@ -71,14 +75,12 @@ void ingresarActores(eActor actores[],int len)
 
       indice = indiceLibreActores(actores,len);
 
-      printf("\nindice: %d\n",indice);
-
         if(indice != -1)
         {
             actores[indice].codigo = idAuto(actores,len,1);
             while(getString(actores[indice].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
             while(getString(actores[indice].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
-            while(getOneChar(&actores[indice].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'h','m')!=0);
+            while(getOneChar(&actores[indice].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
             actores[indice].estado = OCUPADO;
         }
 }
@@ -135,28 +137,45 @@ int indiceLibreActores(eActor actores[],int len)
 
 void modicficarActor(eActor actores[],int len)
 {
+    eActor auxActor;
     int index;
     int opcion;
 
     index = buscarCodigoActores(actores,len);
 
     do{
-            printf("Modificar:\n1-Nombre\n2-Apellido\n3-Sexo\n4-Salir\nOpcion: ");
-            scanf("%d",&opcion);
+            getInt(&opcion,"Modificar:\n1-Nombre\n2-Apellido\n3-Sexo\n4-Salir\nOpcion: ","Solo puede ingresar los numeros que aparecen en el menu",1,4);
             switch(opcion)
             {
             case 1:
-                while(getString(actores[index].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+                while(getString(auxActor.nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+                if(confirmar("Confirmar:","Canselar:")==0)
+                {
+                    strcpy(actores[index].nombre,auxActor.nombre);
+                }else{
+                    printf("La operecion fue cancelada.\n");
+                }
                 break;
             case 2:
-                while(getString(actores[index].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+                while(getString(auxActor.apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+                if(confirmar("Confirmar:","Canselar:")==0)
+                {
+                    strcpy(actores[index].apellido,auxActor.apellido);
+                }else{
+                    printf("La operecion fue cancelada.\n");
+                }
                 break;
             case 3:
-                while(getOneChar(&actores[index].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
+                while(getOneChar(&auxActor.sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
+                if(confirmar("Confirmar:","Canselar:")==0)
+                {
+                    actores[index].sexo = auxActor.sexo;
+                }else{
+                    printf("La operecion fue cancelada.\n");
+                }
                 break;
             default:
                 printf("salir");
-
             }
 
     }while(opcion != 4);
@@ -171,8 +190,7 @@ int buscarCodigoActores(eActor actores[],int len)
     int loEncontro = 0;
 
     do{
-        printf("igrese el codigo que quiere encontrar: ");
-        scanf("%d",&legAux);
+        getInt(&legAux,"igrese el codigo del Actor que quiere encontrar: ","Asegurese de haber ingresado un codigo valido",1,len+1);
 
         for(i=0;i<len;i++)
             {
@@ -182,8 +200,12 @@ int buscarCodigoActores(eActor actores[],int len)
                     loEncontro = 1;
 
                     break;
-                }//if
+                }//IF
             }//for
+        if(loEncontro == 0)
+        {
+            printf("No se encontro\n");
+        }
 
      }while(loEncontro != 1);
 
@@ -230,16 +252,25 @@ void MostrarActores(eActor actores[],int len)
 
 void borrarActor(eActor actores[],int len)
 {
+    eActor auxActores;
     int index;
 
     index = buscarCodigoActores(actores,len);
 
-    actores[index].estado = LIBRE;
+    auxActores.estado = LIBRE;
+
+    if(confirmar("Confirmar:","Cancelar")==0)
+    {
+        actores[index].estado = auxActores.estado;
+    }else{
+        printf("Fuue cancelado\n");
+    }
+
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
-int validarCodiigoDeActores(eActor actores[],int ta)
+int validarCodigoDeActores(eActor actores[],int ta)
 {
     int i;
     int flag = -1;
@@ -249,8 +280,7 @@ int validarCodiigoDeActores(eActor actores[],int ta)
 
     while( flag != 0)
     {
-        printf("Ingrese el codigo de un Actor para el Elenco: ");
-        scanf("%d",&numero);
+        getInt(&numero,"Ingrese el codigo de un Actor para el Elenco: ","Asegurese de haber un codigo valido",1,ta+1);
 
         for(i=0;i<ta;i++)
         {

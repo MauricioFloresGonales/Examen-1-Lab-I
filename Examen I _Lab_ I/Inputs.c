@@ -145,13 +145,13 @@ int getOneChar(char* input,char message[],char eMessage[],char oneLimit, char tw
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
-int confirmar(void)
+int confirmar(char message[],char eMenssage[])
 {
     int retorno;
     char letra;
 
     do{
-        printf("Continuar: 'S' -- Cancelar: 'N'\n\n");
+        printf("%s 'S' -- %s 'N'\n\n",message,eMenssage);
         fflush(stdin);
         letra = getch();
         //letra = getch();//------ En windows la funcion se escribe: int getch(void);
@@ -185,7 +185,8 @@ int getString(char* input,char message[],char eMessage[],char eNumMessage[], int
 
     printf("%s",message);
     fflush(stdin);
-    scanf("%s",arrAux);
+    gets(arrAux);
+    //scanf("%s",arrAux);
 
     largo = strlen(arrAux);
 

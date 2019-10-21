@@ -27,4 +27,4 @@ void mostrarUnActor(eActor[],int indice);
 void MostrarActores(eActor[],int len);//PRINCIPAL
 void borrarActor(eActor[],int len);
 
-int validarCodiigoDeActores(eActor[],int ta);
+int validarCodigoDeActores(eActor[],int ta);

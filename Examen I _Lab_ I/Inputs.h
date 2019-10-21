@@ -68,12 +68,12 @@ int getOneChar(char* input,char message[],char eMessage[],char oneLimit, char tw
 
 /** \brief Muestra dos opciones para verificar que el dato ingresado es el correcto ingresanddo
             's' si el dato es correcto o 'n' si el dato es incorrecto.
- *
- * \param void
+ * \param messge[] mensaje para la opcion firmativa
+ * \param eMessage[] mensaje para la opcion negativa
  * \return int Retorna [0] si el dato es correcto,[1] si el dato es cancelado,[-1] si no ingreso una 's' ni 'n'.
  *
  */
-int confirmar(void);// salta un warnig por usar la funcion 'getch'
+int confirmar(char messge[],char eMessage[]);// salta un warnig por usar la funcion 'getch'
 
 //------------------------------------------------------------------------------------------------------------------------------------------
 
