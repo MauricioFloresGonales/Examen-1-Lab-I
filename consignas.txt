@@ -13,7 +13,7 @@ siguiente:
 *Género:
 	? id
 	? Descripción (máximo 51 caracteres) (Accion, Terror, Romance, Suspenso)
-	?Actor:
+*Actor:
 	? Código (autoincremental)
 	? Nombre (máximo 51 caracteres) ?Validar
 	? Apellido(máximo 51 caracteres)?Validar
@@ -40,7 +40,6 @@ C) Baja: Se ingresará el ?Código de Actor
 D) Listar: Hacer un único listado de todos los Actores
    ordenados por apellido y nombre. ? (Mostrar todos los datos)
 
-
 2) Gestión de Elencos:
 A) Generar elenco: Se dará de alta cada ocurrencia de Elenco 
    (puede ser uno o varios actores para una película),
@@ -51,7 +50,10 @@ B) Listar Elencos (Con sus datos relacionados).
    Ordenados por Película y ante igualdad de criterio
    , por actor.
 
+*//------------------------------//*
+
 SEGUNDA PARTE DEL EXAMEN:
+
 Parte 1:
 Atender a las siguientes modificaciones:
 Al programa solicitado en la instancia de examen anterior
