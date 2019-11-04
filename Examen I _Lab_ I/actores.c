@@ -1,6 +1,6 @@
 #include "actores.h"
 
-void menuActores(eActor actores[],int len)
+void menuActores(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 {
     int opcion;
 
@@ -12,15 +12,15 @@ void menuActores(eActor actores[],int len)
                 ingresarActores(actores,len);
                 break;
             case 2:
-                MostrarActores(actores,len);
-                modicficarActor(actores,len);
+                MostrarActores(actores,len,nacionalidades,tn);
+                modicficarActor(actores,len,nacionalidades,tn);
                 break;
             case 3:
-                MostrarActores(actores,len);
-                borrarActor(actores,len);
+                MostrarActores(actores,len,nacionalidades,tn);
+                borrarActor(actores,len,nacionalidades,tn);
                 break;
             case 4:
-                MostrarActores(actores,len);
+                MostrarActores(actores,len,nacionalidades,tn);
                 system("pause");
                 break;
             case 5:
@@ -40,9 +40,10 @@ void menuActores(eActor actores[],int len)
 void harcodeoActores(eActor actores[],int len)
 {
     char nombre[][51]={"ana","juan","pepe","rosa","carlos"};
-    char apellido[][51]={"catunta","gonzalez","mesa","sanchez"};
+    char apellido[][51]={"catunta","gonzalez","mesa","sanchez","rodriguez"};
     char sexo[]={'f','m','m','f','m'};
     int estado[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
+    int idNacionalidad[] = {1,5,1,4,3};
     int i;
 
     for(i=0;i<len;i++)
@@ -52,6 +53,7 @@ void harcodeoActores(eActor actores[],int len)
         strcpy(actores[i].apellido,apellido[i]);
         actores[i].sexo = sexo[i];
         actores[i].estado = estado[i];
+        actores[i].idNacinalidad = idNacionalidad[i];
     }
 }
 
@@ -81,6 +83,7 @@ void ingresarActores(eActor actores[],int len)
             while(getString(actores[indice].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
             while(getString(actores[indice].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
             while(getOneChar(&actores[indice].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
+            while(getInt(&actores[indice].idNacinalidad,"Ingrese la Nacionalidad:\n[1] Argentina\n[2] Chile\n[3]Bolivia\n[4]Estadoos Unidos\n[5]Inglaterrea\nopcion: ","Error,No ingreso niguna de las opciones",1,5)!=0);
             actores[indice].estado = OCUPADO;
         }
 }
@@ -135,16 +138,16 @@ int indiceLibreActores(eActor actores[],int len)
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void modicficarActor(eActor actores[],int len)
+void modicficarActor(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 {
     eActor auxActor;
     int index;
     int opcion;
 
-    index = buscarCodigoActores(actores,len);
+    index = buscarCodigoActores(actores,len,nacionalidades,tn);
 
     do{
-            getInt(&opcion,"Modificar:\n1-Nombre\n2-Apellido\n3-Sexo\n4-Salir\nOpcion: ","Solo puede ingresar los numeros que aparecen en el menu",1,4);
+            getInt(&opcion,"Modificar:\n1-Nombre\n2-Apellido\n3-Sexo\n4-Nacionalidad\n5-Salir\nOpcion: ","Solo puede ingresar los numeros que aparecen en el menu",1,4);
             switch(opcion)
             {
             case 1:
@@ -174,16 +177,24 @@ void modicficarActor(eActor actores[],int len)
                     printf("La operecion fue cancelada.\n");
                 }
                 break;
+            case 4:
+                while(getInt(&auxActor.idNacinalidad,"Ingrese la Nacionalidad:\n[1] Argentina\n[2] Chile\n[3]Bolivia\n[4]Estadoos Unidos\n[5]Inglaterrea\nopcion: ","Error,No ingreso niguna de las opciones",1,5)!=0);
+                if(confirmar("Confirmar:","Canselar:")==0)
+                {
+                    actores[index].idNacinalidad = auxActor.idNacinalidad;
+                }else{
+                    printf("La operecion fue cancelada.\n");
+                }
             default:
                 printf("salir");
             }
 
-    }while(opcion != 4);
+    }while(opcion != 5);
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-int buscarCodigoActores(eActor actores[],int len)
+int buscarCodigoActores(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 {
     int legAux;
     int i;
@@ -196,7 +207,7 @@ int buscarCodigoActores(eActor actores[],int len)
             {
                 if(actores[i].codigo == legAux && actores[i].estado == OCUPADO)
                 {
-                    mostrarUnActor(actores,i);
+                    mostrarUnActor(actores,i,nacionalidades,tn);
                     loEncontro = 1;
 
                     break;
@@ -214,31 +225,41 @@ int buscarCodigoActores(eActor actores[],int len)
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void mostrarUnActor(eActor actores[],int indice)
+void mostrarUnActor(eActor actores[],int indice,eNacionalidad nacionalidades[],int tn)
 {
+    int i;
+
     if(actores[indice].estado == OCUPADO)
     {
         printf("\n%d",actores[indice].codigo);
         printf("\t\t%10s",actores[indice].apellido);
         printf("\t\t%-10s",actores[indice].nombre);
-        printf("\t\t%c\n",actores[indice].sexo);
+        printf("\t\t%c",actores[indice].sexo);
+
+        for(i=0;i<tn;i++)
+        {
+            if(actores[indice].idNacinalidad == nacionalidades[i].idNacinalidad)
+            {
+                printf("\t\t%s\n",nacionalidades[i].descripcionPais);
+            }
+        }
     }
 
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void MostrarActores(eActor actores[],int len)
+void MostrarActores(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 {
     int flag = 0;
     int i;
-    printf("\nCodigo\t\tApellido\t\tNombre\t\tSexo\n");
+    printf("\nCodigo\t\tApellido\t\tNombre\t\tSexo\t\tNacionalidad\n");
     for(i=0;i<len;i++)
     {
         if(actores[i].estado == OCUPADO)
         {
             flag = 1;
-            mostrarUnActor(actores,i);
+            mostrarUnActor(actores,i,nacionalidades,tn);
         }
     }
 
@@ -250,12 +271,12 @@ void MostrarActores(eActor actores[],int len)
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void borrarActor(eActor actores[],int len)
+void borrarActor(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 {
     eActor auxActores;
     int index;
 
-    index = buscarCodigoActores(actores,len);
+    index = buscarCodigoActores(actores,len,nacionalidades,tn);
 
     auxActores.estado = LIBRE;
 
@@ -270,13 +291,13 @@ void borrarActor(eActor actores[],int len)
 
 //---------------------------------------------------------------------------------------------------------------------
 
-int validarCodigoDeActores(eActor actores[],int ta)
+int validarCodigoDeActores(eActor actores[],int ta,eNacionalidad nacionalidades[],int tn)
 {
     int i;
     int flag = -1;
     int numero;
 
-    MostrarActores(actores,ta);
+    MostrarActores(actores,ta,nacionalidades,tn);
 
     while( flag != 0)
     {
@@ -294,4 +315,19 @@ int validarCodigoDeActores(eActor actores[],int ta)
 
     return numero;
 
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+
+void harcodeoNacionalidades(eNacionalidad nacionalidad[],int len)
+{
+    int id[] = {1,2,3,4,5};
+    char descripcion[][51] = {"argentina","chile","bolivia","EEUU","inglaterra"};
+    int i;
+
+    for(i=0;i<len;i++)
+    {
+        nacionalidad[i].idNacinalidad = id[i];
+        strcpy(nacionalidad[i].descripcionPais,descripcion[i]);
+    }
 }

@@ -1,3 +1,10 @@
+typedef struct
+{
+    int dia;
+    int mes;
+    int anio;
+
+}eFecha;
 
 typedef struct
 {
@@ -5,6 +12,7 @@ typedef struct
     char descripcion[51];
     int duracion;
     int idGenero;
+    eFecha fecha;
 
 }ePelicula;
 
@@ -19,7 +27,7 @@ void harcodeoGeneros(eGenero[],int len);
 
 void harcodeoPeliculas(ePelicula[],int len);
 void inicializarPeliculas(ePelicula[],int len);
-void ingresarPelicula(ePelicula[],int len);
+//void ingresarPelicula(ePelicula[],int len);
 int indiceLibrePelicualas(ePelicula[],int len);
 int idAutoPeliculas(ePelicula[],int len,int valMenor);
 int idMayorPeliculas(ePelicula[],int len,int valMenor);

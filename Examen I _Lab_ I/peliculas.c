@@ -24,6 +24,9 @@ void harcodeoPeliculas(ePelicula peliculas[],int len)
     char descripcion[][51]={"destino final","Bajo la misma estrella","depredador","los juegos del hambre","El juego del miedo","IT"};
     int duracion[] = {1,2,1,2,2,1};
     int idGenero[] = {4,3,1,1,4,2};
+    int diaAux[] = {3,8,6,10,2,3};
+    int mesAux[] = {3,23,5,30,11,15};
+    int anioAux[] = {2000,2015,1987,2014,1999,1994};
     int i;
 
     for(i=0;i<len;i++)
@@ -32,6 +35,9 @@ void harcodeoPeliculas(ePelicula peliculas[],int len)
         strcpy(peliculas[i].descripcion,descripcion[i]);
         peliculas[i].duracion = duracion[i];
         peliculas[i].idGenero = idGenero[i];
+        peliculas[i].fecha.dia = diaAux[i];
+        peliculas[i].fecha.mes = mesAux[i];
+        peliculas[i].fecha.anio = anioAux[i];
     }
 }
 
@@ -45,8 +51,8 @@ void inicializarPeliculas(ePelicula peliculas[],int len)
          peliculas[i].codigo = 0;
      }
  }
-
- //---------------------------------------------------------------------------------------------------------------------------------
+/*
+//---------------------------------------------------------------------------------------------------------------------------------
 
 void ingresarPelicula(ePelicula peliculas[],int len)
 {
@@ -66,7 +72,7 @@ void ingresarPelicula(ePelicula peliculas[],int len)
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
-
+*/
 int indiceLibrePelicualas(ePelicula peliculas[],int len)
 {
     int i;
@@ -148,16 +154,19 @@ void mostrarUnaPelicula(ePelicula peliculas[],int index,eGenero generos[],int tg
     int i;
 
     printf("\n%d",peliculas[index].codigo);
-    printf("\t\t%-5s",peliculas[index].descripcion);
-    printf("\t\t%10d hs",peliculas[index].duracion);
+    printf("\t\t%-16s",peliculas[index].descripcion);
+    printf("\t\t%-5d hs",peliculas[index].duracion);
 
     for(i=0;i<tg;i++)
     {
         if(peliculas[index].idGenero == generos[i].id)
         {
-            printf("\t\t%15s\n",generos[i].descripcion);
+            printf("\t\t%-9s",generos[i].descripcion);
         }
     }
+    printf("\t%5d",peliculas[index].fecha.dia);
+    printf("/%d",peliculas[index].fecha.mes);
+    printf("/%d\n",peliculas[index].fecha.anio);
 
 }
 
@@ -168,7 +177,7 @@ void MostrarPeliculas(ePelicula peliculas[],int len,eGenero generos[],int tg)
     int flag = 0;
     int i;
 
-    printf("\nCodigo\t\tPelicula\t\t\tDuracion\t\tGenero\n");
+    printf("\nCodigo\t\tPelicula\t\t\tDuracion\t\tGenero\t\tFecha de Estreno\n");
 
     for(i=0;i<len;i++)
     {

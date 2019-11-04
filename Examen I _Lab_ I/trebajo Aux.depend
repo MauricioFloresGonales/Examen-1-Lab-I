@@ -39,29 +39,29 @@
 	"actores.h"
 	"peliculas.h"
 
-1571625018 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\actores.c
+1572811962 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\actores.c
 	"actores.h"
 
-1571622653 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\actores.h
+1572811962 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\actores.h
 	<stdio.h>
 	"Inputs.h"
 
-1571615245 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\inputs.h
+1572811962 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\inputs.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1571625156 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\elenco.c
+1572811962 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\elenco.c
 	"elenco.h"
 
-1571613824 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\elenco.h
+1572811962 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\elenco.h
 	"actores.h"
 	"peliculas.h"
 
-1571613824 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.h
+1572811962 c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.h
 
-1571624698 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\inputs.c
+1572811962 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\inputs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -69,12 +69,53 @@
 	<ctype.h>
 	<conio.h>
 
-1571625156 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\main.c
+1572811962 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\main.c
 	<stdio.h>
 	<stdlib.h>
 	"elenco.h"
 
-1571613824 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.c
+1572811962 source:c:\users\pipoca\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.c
+	<stdio.h>
+	<string.h>
+	"Inputs.h"
+	"peliculas.h"
+
+1572825692 source:d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\actores.c
+	"actores.h"
+
+1572825421 d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\actores.h
+	<stdio.h>
+	"Inputs.h"
+
+1572811962 d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\inputs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1572827843 source:d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\elenco.c
+	"elenco.h"
+
+1572827024 d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\elenco.h
+	"actores.h"
+	"peliculas.h"
+
+1572820000 d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\peliculas.h
+
+1572811962 source:d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\inputs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Inputs.h"
+	<ctype.h>
+	<conio.h>
+
+1572825589 source:d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\main.c
+	<stdio.h>
+	<stdlib.h>
+	"elenco.h"
+
+1572820637 source:d:\utn\programacion i recur\examen-1-lab-i\examen i _lab_ i\peliculas.c
 	<stdio.h>
 	<string.h>
 	"Inputs.h"

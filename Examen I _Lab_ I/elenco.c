@@ -1,6 +1,6 @@
 #include "elenco.h"
 
-void menuElencos(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[],int tg,eActor actores[],int ta)
+void menuElencos(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[],int tg,eActor actores[],int ta,eNacionalidad nacionalidades[],int tn)
 {
     int opcion;
 
@@ -10,7 +10,7 @@ void menuElencos(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero g
             switch(opcion)
             {
             case 1:
-                ingreseElenco(elencos,te,peliculas,tp,generos,tg,actores,ta);
+                ingreseElenco(elencos,te,peliculas,tp,generos,tg,actores,ta,nacionalidades,tn);
                 break;
             case 2:
                 //listarElencos(elencos,te,peliculas,tp,actores,ta);
@@ -75,7 +75,7 @@ int indiceLibreElenco(eElenco elencos[],int len)
 
 //---------------------------------------------------------------------------------------------------------------------
 
-void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[],int tg,eActor actores[],int ta)
+void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[],int tg,eActor actores[],int ta,eNacionalidad nacionalidades[],int tn)
 {
     eElenco auxElenco;
     int index;
@@ -87,37 +87,41 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
     index = indiceLibreElenco(elencos,te);
 
     codePelicula = validarCodigoDePelicula(peliculas,tp,generos,tg);
+    codeActor = validarCodigoDeActores(actores,ta,nacionalidades,tn);
 
-
-    for(i=0;i<te;i++)
-    {
-        if(codePelicula == peliculas[i].codigo)
+    //if(elencoExistente(elencos,te,codePelicula,codeActor)==1)
+    //{
+        for(i=0;i<te;i++)
         {
-            auxElenco.codigoDePelicula = peliculas[i].codigo;
-
-            codeActor = validarCodigoDeActores(actores,ta);
-
-            for(j=0;j<ta;j++)
+            if(codePelicula == peliculas[i].codigo)
             {
-                if(codeActor == actores[j].codigo)
-                {
-                    auxElenco.codigoDeActor = actores[j].codigo;
+                auxElenco.codigoDePelicula = peliculas[i].codigo;
 
-                    while(getInt(&auxElenco.valorContrato,"ingrese el valor del Contrato: ","Error,el contrato no puede pasar de 1.000.000",0,1000000)!=0);
-                }
+                    for(j=0;j<ta;j++)
+                    {
+                        if(codeActor == actores[j].codigo)
+                        {
+                            auxElenco.codigoDeActor = actores[j].codigo;
+
+                            while(getInt(&auxElenco.valorContrato,"ingrese el valor del Contrato: ","Error,el contrato no puede pasar de 1.000.000",0,1000000)!=0);
+
+                            if(confirmar("Confirmar:","Canselar:")==0)
+                            {
+                                elencos[index].codigoDePelicula = auxElenco.codigoDePelicula;
+                                elencos[index].codigoDeActor = auxElenco.codigoDeActor;
+                                elencos[index].valorContrato = auxElenco.valorContrato;
+
+                            }else{
+                                printf("La operecion fue cancelada.\n");
+                            }
+                        }
+                    }
             }
         }
-    }
 
-    if(confirmar("Confirmar:","Canselar:")==0)
-    {
-        elencos[index].codigoDePelicula = auxElenco.codigoDePelicula;
-        elencos[index].codigoDeActor = auxElenco.codigoDeActor;
-        elencos[index].valorContrato = auxElenco.valorContrato;
-
-    }else{
-        printf("La operecion fue cancelada.\n");
-    }
+    //}else{
+        //printf("\nEl elenco ya existe\n");
+    //}
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -191,5 +195,23 @@ void mostrarUnElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eActo
 
 }
 
+int elencoExistente(eElenco elencos[],int te,int codePelicula,int codeActor)
+{
+    int i;
+    int retorno;
+
+    for(i=0;i<te;i++)
+    {
+        if(elencos[i].codigoDePelicula == codePelicula && elencos[i].codigoDeActor==codeActor)
+        {
+            retorno = 1;
+        }else{
+            retorno = 0;
+        }
+    }
+
+    return retorno;
+
+}
 
 

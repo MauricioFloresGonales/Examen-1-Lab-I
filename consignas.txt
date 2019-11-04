@@ -2,67 +2,80 @@
 Parcial (?RSP?), Final (?FIN?) .Marque con una cruz.
 (2)? Campos a ser completados por el docente.
 Desarrollar en ANSI C:
+
 Se necesita administrar los elencos de la diversas películas y para ello se deberá realizar un programa de acuerdo a lo
 siguiente:
-?Película:
-? Código
-? Descripción
-? Duración
-? idGenero
-Género:
-? id
-? Descripción (máximo 51 caracteres) (Accion, Terror, Romance, Suspenso)
-?Actor:
-? Código (autoincremental)
-? Nombre (máximo 51 caracteres) ?Validar
-? Apellido(máximo 51 caracteres)?Validar
-? Sexo? Validar
-Elenco:
-? Código de reparto(autoincremental)
-? Código de película ?Validar
-? Código de actor ?Validar
-? Valor contrato
+*Película:
+	? Código
+	? Descripción
+	? Duración
+	? idGenero
+*Género:
+	? id
+	? Descripción (máximo 51 caracteres) (Accion, Terror, Romance, Suspenso)
+	?Actor:
+	? Código (autoincremental)
+	? Nombre (máximo 51 caracteres) ?Validar
+	? Apellido(máximo 51 caracteres)?Validar
+	? Sexo? Validar
+*Elenco:
+	? Código de reparto(autoincremental)
+	? Código de película ?Validar
+	? Código de actor ?Validar
+	? Valor contrato
+
 Realizar un menú con las siguientes opciones:
 1) Gestión de Actores:
 A) Altas: No es necesario el ingreso de todos los actores.
-B) Modificar: Se ingresará el ?Código del actor
-?
-, permitiendo en un submenú modificar:
-? Nombre
-? Apellido
-? Sexo
+
+B) Modificar: Se ingresará el Código del actor
+   permitiendo en un submenú modificar:
+	? Nombre
+	? Apellido
+	? Sexo
+
 C) Baja: Se ingresará el ?Código de Actor
-?
-y se realizará una baja lógica.
-D) Listar: Hacer un único listado de todos los Actores ordenados por apellido y nombre. ? (Mostrar
-todos los datos)
+   y se realizará una baja lógica.
+
+D) Listar: Hacer un único listado de todos los Actores
+   ordenados por apellido y nombre. ? (Mostrar todos los datos)
+
+
 2) Gestión de Elencos:
-A) Generar elenco: ?Se dará de alta cada ocurrencia de Elenco (puede ser uno o varios actores
-para una película), relacionando Película – Actor, Valor de contrato. Verificar que no se repita
-el par película-actor.
-B) Listar Elencos (Con sus datos relacionados). Ordenados por Película y ante igualdad de
-criterio, por actor.
+A) Generar elenco: Se dará de alta cada ocurrencia de Elenco 
+   (puede ser uno o varios actores para una película),
+   relacionando Película – Actor, Valor de contrato. 
+   Verificar que no se repita el par película-actor.
+
+B) Listar Elencos (Con sus datos relacionados). 
+   Ordenados por Película y ante igualdad de criterio
+   , por actor.
+
+SEGUNDA PARTE DEL EXAMEN:
 Parte 1:
 Atender a las siguientes modificaciones:
 Al programa solicitado en la instancia de examen anterior
 1. Agregar las siguientes estructuras:
-? Fecha (dia, mes, anio)
-? Pais (id, descripcionPais)
+	? Fecha (dia, mes, anio)
+	? Pais (id, descripcionPais)
 2. Agregar:
-a. A la estructura Pelicula la fecha de estreno.
-b. Al actor la nacionalidad.
+	a. A la estructura Pelicula la fecha de estreno.
+	b. Al actor la nacionalidad.
 3. Refactorizar el programa de forma tal que atienda a todos los requisitos
-solicitados con anterioridad.
+   solicitados con anterioridad.
+
 Parte 2.
 Una vez concluida la parte 1:
-Agregar la opcion 3 (Informes) al menú principal y visualizar en
-distintas opciones:
+Agregar la opcion 3 (Informes) al menú principal y 
+visualizar en distintas opciones:
+
 1. Mostrar las películas de terror cuyo año de estreno sea después del 2002.
 2. Películas en donde haya participado un actor argentino.
 3. Mostrar las películas en las que participó un actor seleccionado.
 4. Seleccionar un actor y determinar cuánto ha recaudado en todas las
 películas románticas en las que participó.
 5. Listar los actores que no participaron en ninguna película.
+
 NOTAS:
 I. Se deberá desarrollar bibliotecas por cada entidad, las cuales contendrán las funciones Alta, Baja, Modificar
 y Listar.

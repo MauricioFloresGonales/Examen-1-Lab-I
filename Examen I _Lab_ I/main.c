@@ -15,6 +15,8 @@ int main()
     eActor actores[TA];
     eElenco elencos[TE];
 
+    eNacionalidad nacionalidades[5];
+
     int opcion;
 
     inicializarActores(actores,TA);
@@ -24,6 +26,8 @@ int main()
     harcodeoGeneros(generos,TG);
     harcodeoPeliculas(peliculas,5);
     harcodeoElencos(elencos,5);
+
+    harcodeoNacionalidades(nacionalidades,5);
 
     do{
         printf("1- Gestion de Actores:\n");
@@ -36,11 +40,11 @@ int main()
         {
         case 1:
             system("cls");
-            menuActores(actores,TA);
+            menuActores(actores,TA,nacionalidades,5);
             break;
         case 2:
             system("cls");
-            menuElencos(elencos,TE,peliculas,TP,generos,TG,actores,TA);
+            menuElencos(elencos,TE,peliculas,TP,generos,TG,actores,TA,nacionalidades,5);
             break;
         case 3:
             printf("SALIR\n");
