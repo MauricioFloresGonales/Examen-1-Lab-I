@@ -221,7 +221,7 @@ int validarLetrasEnString(char palabra[],int tam)
     {
         validador = isdigit(palabra[i]);
 
-        if(validador == 1)
+        if(validador != 0)
         {
             retorno = -1;
         }

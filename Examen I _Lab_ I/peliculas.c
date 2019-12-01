@@ -21,12 +21,12 @@ void harcodeoGeneros(eGenero generos[],int len)
 
 void harcodeoPeliculas(ePelicula peliculas[],int len)
 {
-    char descripcion[][51]={"destino final","Bajo la misma estrella","depredador","los juegos del hambre","El juego del miedo","IT"};
-    int duracion[] = {1,2,1,2,2,1};
-    int idGenero[] = {4,3,1,1,4,2};
-    int diaAux[] = {3,8,6,10,2,3};
-    int mesAux[] = {3,23,5,30,11,15};
-    int anioAux[] = {2000,2015,1987,2014,1999,1994};
+    char descripcion[][51]={"destino final","Bajo la misma estrella","depredador","los juegos del hambre","El juego del miedo","IT","Viernes 13"};
+    int duracion[] = {1,2,1,2,2,1,2};
+    int idGenero[] = {4,3,1,1,4,2,2};
+    int diaAux[] = {3,23,5,30,11,15,3};
+    int mesAux[] = {3,8,6,10,2,3,12};
+    int anioAux[] = {2000,2015,1987,2014,1999,2002,2002};
     int i;
 
     for(i=0;i<len;i++)
@@ -217,4 +217,28 @@ int validarCodigoDePelicula(ePelicula peliculas[],int tp,eGenero generos[],int t
     }
 
     return numero;
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+int validarPeliculasDeTerror(ePelicula pelicula[],int tp,eGenero generos[], int tg)
+{
+    int retorno = -1;
+    int i;
+
+    for(i=0;i<tp;i++)
+    {
+        if(pelicula[i].idGenero == 2)
+        {
+            if(pelicula[i].fecha.anio == 2002)
+            {
+                mostrarUnaPelicula(pelicula,i,generos,tg);
+                retorno = 0;
+            }
+        }
+    }
+
+    return retorno;
 }

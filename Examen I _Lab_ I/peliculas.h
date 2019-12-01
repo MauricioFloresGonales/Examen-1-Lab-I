@@ -36,3 +36,5 @@ void mostrarUnaPelicula(ePelicula[],int index,eGenero[],int tamGen);
 void MostrarPeliculas(ePelicula[],int len,eGenero[],int tamGen);
 
 int validarCodigoDePelicula(ePelicula[],int tp,eGenero[],int tg);
+
+int validarPeliculasDeTerror(ePelicula[],int tp,eGenero[], int tg);

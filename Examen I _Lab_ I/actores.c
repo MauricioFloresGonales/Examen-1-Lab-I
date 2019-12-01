@@ -39,11 +39,11 @@ void menuActores(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 
 void harcodeoActores(eActor actores[],int len)
 {
-    char nombre[][51]={"ana","juan","pepe","rosa","carlos"};
-    char apellido[][51]={"catunta","gonzalez","mesa","sanchez","rodriguez"};
-    char sexo[]={'f','m','m','f','m'};
-    int estado[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
-    int idNacionalidad[] = {1,5,1,4,3};
+    char nombre[][51]={"ana","juan","pepe","rosa","carlos","mauricio"};
+    char apellido[][51]={"catunta","gonzalez","mesa","sanchez","rodriguez","flores"};
+    char sexo[]={'f','m','m','f','m','m'};
+    int estado[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
+    int idNacionalidad[] = {1,5,1,4,2,3};
     int i;
 
     for(i=0;i<len;i++)
