@@ -33,9 +33,10 @@ int main()
         printf("1- Gestion de Actores:\n");
         printf("2- Gestion de Elencos:\n");
         printf("3- Informes:\n");
-        printf("4- salir:\n");
+        printf("4- informes Finales:\n");
+        printf("5- salir:\n");
 
-        while(getInt(&opcion,"Elija una opcion:\n","Solo puede ingresar los numeros del menu",1,4)!=0);
+        while(getInt(&opcion,"Elija una opcion:\n","Solo puede ingresar los numeros del menu",1,5)!=0);
 
         switch(opcion)
         {
@@ -51,6 +52,9 @@ int main()
             system("cls");
             menuInformes(elencos,TE,peliculas,TP,generos,TG,actores,TA,nacionalidades,5);
             break;
+        case 4:
+            munuFinal(elencos,TE,peliculas,TP,generos,TG,actores,TA,nacionalidades,5);
+            break;
         default:
             printf("ADIOS.\n");
         }
@@ -58,7 +62,7 @@ int main()
     system("pause");
     system("cls");
 
-    }while(opcion != 4);
+    }while(opcion != 5);
 
 
     return 0;

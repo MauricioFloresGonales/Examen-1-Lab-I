@@ -39,10 +39,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="actores.h" />
+		<Unit filename="efecha.h" />
 		<Unit filename="elenco.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="elenco.h" />
+		<Unit filename="fecha.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

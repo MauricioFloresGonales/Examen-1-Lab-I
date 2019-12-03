@@ -1,10 +1,4 @@
-typedef struct
-{
-    int dia;
-    int mes;
-    int anio;
-
-}eFecha;
+#include "efecha.h"
 
 typedef struct
 {
@@ -12,7 +6,7 @@ typedef struct
     char descripcion[51];
     int duracion;
     int idGenero;
-    eFecha fecha;
+    Fecha fecha;
 
 }ePelicula;
 

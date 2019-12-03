@@ -121,3 +121,50 @@
 	"Inputs.h"
 	"peliculas.h"
 
+1575383358 source:c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\elenco.c
+	"elenco.h"
+
+1575381560 c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\elenco.h
+	"actores.h"
+	"peliculas.h"
+
+1575377676 c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\actores.h
+	<stdio.h>
+	"Inputs.h"
+	"efecha.h"
+
+1575374117 c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\inputs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1575377679 c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.h
+	"efecha.h"
+
+1575374117 source:c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\inputs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Inputs.h"
+	<ctype.h>
+	<conio.h>
+
+1575381646 source:c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\main.c
+	<stdio.h>
+	<stdlib.h>
+	"elenco.h"
+
+1575374117 source:c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\peliculas.c
+	<stdio.h>
+	<string.h>
+	"Inputs.h"
+	"peliculas.h"
+
+1575379649 source:c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\actores.c
+	"actores.h"
+
+1575377245 c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\fecha.h
+
+1575377671 c:\users\alumno\desktop\examen-1-lab-i\examen i _lab_ i\efecha.h
+

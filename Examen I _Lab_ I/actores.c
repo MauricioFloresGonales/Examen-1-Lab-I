@@ -39,11 +39,18 @@ void menuActores(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 
 void harcodeoActores(eActor this[],int len)
 {
-    char nombre[][51]={"ana","juan","pepe","rosa","carlos","mauricio"};
+    char nombre[][51]={"ana","juan","pepe","rosa","carlos","jose"};
     char apellido[][51]={"catunta","gonzalez","mesa","sanchez","rodriguez","flores"};
     char sexo[]={'f','m','m','f','m','m'};
     int estado[]={OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO,OCUPADO};
     int idNacionalidad[] = {1,5,1,4,2,3};
+    char calle[][51]={"piedras","tacuari","av.caseros","av.independencia","av.cordoba","iliarte"};
+    int altura[]={500,123,547,888,1002,1147};
+    char localidad[][51]={"contitucion","belgrano","congreso","la boca","avellaneda","lanus"};
+    int cantPremios[]={1,2,0,3,1,5};
+    int diaNacimiento[]={1,25,8,6,23,14};
+    int mesNacimiento[]={1,8,4,3,2,4};
+    int anioNacimiento[]={1999,1952,1988,1999,2001,1992};
     int i;
 
     for(i=0;i<len;i++)
@@ -54,6 +61,13 @@ void harcodeoActores(eActor this[],int len)
         this[i].sexo = sexo[i];
         this[i].estado = estado[i];
         this[i].idNacinalidad = idNacionalidad[i];
+        strcpy(this[i].direccion.calle,calle[i]);
+        this[i].direccion.altura = altura[i];
+        strcpy(this[i].direccion.localidad,localidad[i]);
+        this[i].cantPremios = cantPremios[i];
+        this[i].fechaNacimiento.dia = diaNacimiento[i];
+        this[i].fechaNacimiento.mes = mesNacimiento[i];
+        this[i].fechaNacimiento.anio = anioNacimiento[i];
     }
 }
 
@@ -80,10 +94,17 @@ void ingresarActores(eActor this[],int len)
         if(indice != -1)
         {
             this[indice].codigo = idAuto(this,len,1);
-            while(getString(this[indice].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
-            while(getString(this[indice].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+            while(getStringWithNums(this[indice].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado",0,51)!=0);
+            while(getStringWithNums(this[indice].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado",0,51)!=0);
             while(getOneChar(&this[indice].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
             while(getInt(&this[indice].idNacinalidad,"Ingrese la Nacionalidad:\n[1] Argentina\n[2] Chile\n[3]Bolivia\n[4]Estadoos Unidos\n[5]Inglaterrea\nopcion: ","Error,No ingreso niguna de las opciones",1,5)!=0);
+            while(getStringWithNums(this[indice].direccion.calle,"ingrese la calle del actor: ","error,nombre muy largo",1,51)!=0);
+            while(getIntIlimit(&this[indice].direccion.altura,"ingrese la altura de la calle: ","error,solo puede ingresar numros",1)!=0);
+            while(getStringWithNums(this[indice].direccion.localidad,"ingrese la localidad del actor: ","error,nombre muy largo",1,51)!=0);
+            while(getIntIlimit(&this[indice].cantPremios,"ingrese la cantPremios del actor: ","error,solo puede ingresar numros",0)!=0);
+            while(getInt(&this[indice].fechaNacimiento.dia,"ingrese el dia de nacimiento","error,maximo num es 31",1,31)!=0);
+            while(getInt(&this[indice].fechaNacimiento.mes,"ingrese el mes de nacimiento","error,maximo num es 12",1,12)!=0);
+            while(getInt(&this[indice].fechaNacimiento.anio,"ingrese el anio de nacimiento","error,maximo num es invalido",1,2019)!=0);
             this[indice].estado = OCUPADO;
         }
 }
@@ -185,6 +206,7 @@ void modicficarActor(eActor actores[],int len,eNacionalidad nacionalidades[],int
                 }else{
                     printf("La operecion fue cancelada.\n");
                 }
+                break;
             default:
                 printf("salir");
             }
@@ -232,17 +254,19 @@ void mostrarUnActor(eActor actores[],int indice,eNacionalidad nacionalidades[],i
     if(actores[indice].estado == OCUPADO)
     {
         printf("\n%d",actores[indice].codigo);
-        printf("\t\t%10s",actores[indice].apellido);
-        printf("\t\t%-10s",actores[indice].nombre);
-        printf("\t\t%c",actores[indice].sexo);
+        printf("\t%10s",actores[indice].apellido);
+        printf("\t%-7s",actores[indice].nombre);
+        printf("\t%-5c",actores[indice].sexo);
 
         for(i=0;i<tn;i++)
         {
             if(actores[indice].idNacinalidad == nacionalidades[i].idNacinalidad)
             {
-                printf("\t\t%s\n",nacionalidades[i].descripcionPais);
+                printf("\t%-10s",nacionalidades[i].descripcionPais);
             }
         }
+        printf("\t%10s",actores[indice].direccion.localidad);
+        printf("\t%d\n",actores[indice].fechaNacimiento.anio);
     }
 
 }
@@ -253,7 +277,7 @@ void MostrarActores(eActor actores[],int len,eNacionalidad nacionalidades[],int 
 {
     int flag = 0;
     int i;
-    printf("\nCodigo\t\tApellido\t\tNombre\t\tSexo\t\tNacionalidad\n");
+    printf("\nCodigo\t  Apellido\tNombre\tSexo\tNacionalidad\tlocalidad\tanioNaci\n");
     for(i=0;i<len;i++)
     {
         if(actores[i].estado == OCUPADO)

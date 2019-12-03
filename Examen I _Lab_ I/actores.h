@@ -1,6 +1,8 @@
+
 #include <stdio.h>
 #include "Inputs.h"
 
+#include "efecha.h"
 #define LIBRE 0
 #define OCUPADO 1
 
@@ -13,12 +15,23 @@ typedef struct
 
 typedef struct
 {
+    char calle[51];
+    int altura;
+    char localidad[51];
+
+}eDireccion;
+
+typedef struct
+{
     int codigo; /**(autoincremental)*/
     char nombre[51];/**Validar**/
     char apellido[51];/**Validar*/
     char sexo; /**Validar */
     int estado;
     int idNacinalidad;
+    eDireccion direccion;
+    int cantPremios;
+    Fecha fechaNacimiento;
 
 }eActor;
 

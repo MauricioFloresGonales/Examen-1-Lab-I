@@ -221,6 +221,7 @@ int elencoExistente(eElenco elenco[],int te,int codePelicula,int codeActor)
 void menuInformes(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[], int tg,eActor actores[],int ta,eNacionalidad nacionalidad[],int tn)
 {
     int opcion;
+    int idActorAux;
     char nombreAux[51];
     do{
         printf("\n1.Inf.Pelicuas de Terror del 2002\n");
@@ -253,10 +254,11 @@ void menuInformes(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero 
         case 3:
             system("cls");
             printf("3.Inf.Encontrar Peliculas de ...\n");
-            while(getStringWithNums(nombreAux,"ingrese el nombre de un actor: ","El nombre es muy largo\n",0,50)!=0);
-            if(peliculaConTalActor(elencos,te,actores,ta,peliculas,tp,nombreAux)!=0)
+            MostrarActores(actores,ta,nacionalidad,tn);
+            while(getIntIlimit(&idActorAux,"ingrese el id de un actor: ","solo puede ingresar numeros",0)!=0);
+            if(peliculaConTalActor(elencos,te,actores,ta,peliculas,tp,idActorAux)!=0)
             {
-                printf("No se encontro ninguna pelicula de %s.",nombreAux);
+                printf("No se encontro ninguna pelicula del actor.");
             }
 
             break;
@@ -267,7 +269,7 @@ void menuInformes(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero 
             while(getStringWithNums(nombreAux,"ingrese el nombre de un actor: ","El nombre es muy largo\n",0,50)!=0);
             if(cuantoRecaudoTalActorConRomanticas(elencos,te,actores,ta,peliculas,tp,nombreAux)!=0)
             {
-                printf("No se encontro ninguna pelicula romantica con %s.",nombreAux);
+                printf("No se encontro ninguna pelicula romantica con el actor.");
             }
             break;
         case 5:
@@ -312,7 +314,7 @@ int peliculaConActorArg(eElenco elencos[],int te,eActor actores[],int ta,ePelicu
     return retorno;
 }
 
-int peliculaConTalActor(eElenco elencos[],int te,eActor actores[],int ta,ePelicula peliculas[],int tp,char nomActor[])
+int peliculaConTalActor(eElenco elencos[],int te,eActor actores[],int ta,ePelicula peliculas[],int tp,int idActor)
 {
     int retorno = -1;
     int i;
@@ -325,7 +327,7 @@ int peliculaConTalActor(eElenco elencos[],int te,eActor actores[],int ta,ePelicu
         {
             if(elencos[i].codigoDeActor == actores[j].codigo)
             {
-                if(stricmp(actores[j].nombre,nomActor)==0)
+                if(actores[j].codigo==idActor)
                 {
                     for(k=0;k<tp;k++)
                     {
@@ -384,7 +386,7 @@ int cuantoRecaudoTalActorConRomanticas(eElenco elencos[],int te,eActor actores[]
 
 void actoresSinTrabajo(eElenco elencos[],int te,eActor actores[],int ta,eNacionalidad nacionalidad[],int tn)
 {
-    int validar = -1;
+    int validar;
     int i;
     int j;
 
@@ -397,12 +399,140 @@ void actoresSinTrabajo(eElenco elencos[],int te,eActor actores[],int ta,eNaciona
                 validar=0;
                 break;
             }
+            else
+            {
+                validar=-1;
+            }
         }
-        if(validar!=0)
+        if(validar==-1)
         {
             mostrarUnActor(actores,i,nacionalidad,tn);
         }
     }
 }
 
+void munuFinal(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero generos[], int tg,eActor actores[],int ta,eNacionalidad nacionalidad[],int tn)
+{
+    int opcion;
+    int idActorAux;
+    char nombreAux[51];
+    do{
+        printf("1. Inf.Actor de avellaneda en una pelicula.\n");
+        printf("2. Inf.actor mayor a 31 con mas de un premio:\n");
+        printf("3. Seleccionar un elenco y mostrar el total de premios que tienen los actores que lo conforman.\n");
+        printf("4. Listar los actores y mostrar la edad que posee cada uno.\n");
+        printf("5.Salir\n");
 
+        while(getInt(&opcion,"Elija una opcion: ","Solo puede ingresar los numeros del menu",1,5)!=0);
+
+        switch(opcion)
+        {
+        case 1:
+            system("cls");
+            printf("1.Inf.Actor de avellaneda en una pelicula:\n");
+            if(pelConActDeAvellaneda(elencos,te,actores,ta,peliculas,tp)!=0)
+            {
+                printf("No se encontro ninguna pelicula con un actor de avellaneda\n");
+            }
+            break;
+        case 2:
+            system("cls");
+            printf("2.Inf.actor mayor a 31 con mas de un premio:\n");
+            if(visualiza(actores,ta,nacionalidad,tn)!=0)
+            {
+                printf("No se encontro ninguna actor mayor a 31 anios y que haya ganado mas de un premio\n");
+            }
+            break;
+        case 3:
+            totalDePremiosDe(elencos,te,actores,ta,peliculas,tp,generos,tg);
+            break;
+        case 4:
+            break;
+        default:
+            printf("Usted salio del menu de Informes\n");
+        }
+    }while(opcion!=5);
+}
+
+
+int pelConActDeAvellaneda(eElenco elenco[],int te,eActor actor[],int ta,ePelicula pelicula[],int tp)
+{
+    int retorno = -1;
+    int i;
+    int j;
+    int k;
+
+    for(i=0;i<te;i++)
+    {
+        for(j=0;j<ta;j++)
+        {
+            if(elenco[i].codigoDeActor == actor[j].codigo)
+            {
+                if(stricmp(actor[j].direccion.localidad,"avellaneda")==0);
+                {
+                    for(k=0;k<te;k++)
+                    {
+                        if(elenco[i].codigoDePelicula == pelicula[k].codigo && actor[i].estado==1)
+                        {
+                            printf("Actor: %s\tPelicula: %s\n",actor[j].nombre,pelicula[k].descripcion);
+                            retorno = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return retorno;
+}
+
+int visualiza(eActor actores[],int ta,eNacionalidad nacionalidades[],int tn)
+{
+    int retorno = -1;
+    int i;
+    int edad;
+    for(i=0;i<ta;i++)
+    {
+        edad = 2019 - actores[i].fechaNacimiento.anio;
+        if(edad > 30)
+        {
+            if(actores[i].cantPremios>=1)
+            {
+                mostrarUnActor(actores,i,nacionalidades,tn);
+                retorno = 0;
+            }
+        }
+    }
+    return retorno;
+}
+//3. Seleccionar un elenco y mostrar el total de premios que tienen los actores que lo conforman.
+int totalDePremiosDe(eElenco elenco[],int te,eActor actor[],int ta,ePelicula pelicula[],int tp,eGenero generos[], int tg)
+{
+    int retorno = -1;
+    int i;
+    int j;
+    int k;
+    int codigoPeliculaAux;
+    int premiosTotales;
+
+    codigoPeliculaAux = validarCodigoDePelicula(pelicula,tp,generos,tg);
+
+    for(i=0;i<te;i++)
+    {
+
+            if(elenco[i].codigoDePelicula == codigoPeliculaAux)
+            {
+                for(k=0;k<ta;k++)
+                {
+                    if(elenco[i].codigoDeActor == actor[k].codigo && actor[k].estado==1)
+                    {
+                        printf("Actor: %s\tPremios: %d\n",actor[k].nombre,actor[k].cantPremios);
+                        premiosTotales = premiosTotales+actor[k].cantPremios;
+                        retorno = 0;
+                    }
+                }
+            }
+
+    }
+    printf("cantidad de premios totales: %d\n",premiosTotales);
+    return retorno;
+}
