@@ -1,0 +1,28 @@
+Parte 2:
+
+A partir de lo solicitado en la parte 1:
+
+1.    Agregar la siguiente estructura:
+•	Dirección (calle, altura, localidad)
+     
+2.	Agregar:
+•	A la estructura Actor la dirección y el campo cantidad de premios.
+•	Añadir el campo fechaNacimiento al Actor (utilizando la estructura Fecha)
+
+3.	Refactorizar el programa de forma tal que a tienda a todos los requisitos solicitados con anterioridad.
+
+
+Una vez finalizados los requisitos previos:
+
+Agregar la opción 4 (Informes finales) al menú principal y visualizar en distintas opciones:
+
+1. Mostrar películas donde haya participado un actor de Avellaneda.
+2. Visualizar los actores cuya edad sea mayor a 30 años y que hayan ganado al menos 1 premio.
+3. Seleccionar un elenco y mostrar el total de premios que tienen los actores que lo conforman.
+4. Listar los actores y mostrar la edad que posee cada uno.
+
+
+NOTAS: 
+I.	Se deberá desarrollar bibliotecas por cada entidad, las cuales contendrán las funciones Alta, Baja, Modificar y Listar. 
+II.	Las validaciones deberán estar en una biblioteca aparte. 
+III.	El código deberá tener comentarios con la documentación de cada una de las funciones y respetar las reglas de estilo de la cátedra.
