@@ -14,6 +14,9 @@
 
 int getInt(int* valor,char message[],char eMessage[],int lowLimit, int hiLimit);
 
+
+int getIntIlimit(int* valor, char message[],char eMessage[], int lowLimit);
+
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 /** * \brief Solicita un número al usuario y lo valida
@@ -25,6 +28,8 @@ int getInt(int* valor,char message[],char eMessage[],int lowLimit, int hiLimit);
 * \return Si obtuvo el numero [0] si no [-1]
 * */ int getFloat(float* valor,char message[],char eMessage[], float lowLimit, float hiLimit);
 
+
+int getFloatIlimit(float* valor,char message[],char eMessage[], float lowLimit);
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 

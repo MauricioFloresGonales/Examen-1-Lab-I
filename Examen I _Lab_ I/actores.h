@@ -29,11 +29,11 @@ void ingresarActores(eActor[],int len);
 int idAuto(eActor[],int len,int valMenor);
 int idMayor(eActor[],int len,int valMenor);
 int indiceLibreActores(eActor[],int len);
-void modicficarActor(eActor[],int len,eNacionalidad nacionalidades[],int tn);//PRINCIPAL
+void modicficarActor(eActor[],int len,eNacionalidad[],int tn);//PRINCIPAL
 int buscarCodigoActores(eActor[],int len,eNacionalidad[],int tn);
 void mostrarUnActor(eActor[],int indice,eNacionalidad[],int tn);
 void MostrarActores(eActor[],int len,eNacionalidad[],int tn);//PRINCIPAL
-void borrarActor(eActor[],int len,eNacionalidad nacionalidades[],int tn);
+void borrarActor(eActor[],int len,eNacionalidad[],int tn);
 
 int validarCodigoDeActores(eActor[],int ta,eNacionalidad[],int tn);
 

@@ -5,8 +5,8 @@
 
 #define TP 7
 #define TG 4
-#define TA 8
-#define TE 8
+#define TA 10
+#define TE 12
 
 int main()
 {

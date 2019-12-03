@@ -37,7 +37,7 @@ void menuActores(eActor actores[],int len,eNacionalidad nacionalidades[],int tn)
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void harcodeoActores(eActor actores[],int len)
+void harcodeoActores(eActor this[],int len)
 {
     char nombre[][51]={"ana","juan","pepe","rosa","carlos","mauricio"};
     char apellido[][51]={"catunta","gonzalez","mesa","sanchez","rodriguez","flores"};
@@ -48,54 +48,54 @@ void harcodeoActores(eActor actores[],int len)
 
     for(i=0;i<len;i++)
     {
-        actores[i].codigo = idAuto(actores,len,1);
-        strcpy(actores[i].nombre,nombre[i]);
-        strcpy(actores[i].apellido,apellido[i]);
-        actores[i].sexo = sexo[i];
-        actores[i].estado = estado[i];
-        actores[i].idNacinalidad = idNacionalidad[i];
+        this[i].codigo = idAuto(this,len,1);
+        strcpy(this[i].nombre,nombre[i]);
+        strcpy(this[i].apellido,apellido[i]);
+        this[i].sexo = sexo[i];
+        this[i].estado = estado[i];
+        this[i].idNacinalidad = idNacionalidad[i];
     }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void inicializarActores(eActor actores[],int len)
+void inicializarActores(eActor this[],int len)
  {
      int i;
      for(i=0;i<len;i++)
      {
-         actores[i].codigo = 0;
-         actores[i].estado = LIBRE;
+         this[i].codigo = 0;
+         this[i].estado = LIBRE;
      }
  }
 
  //---------------------------------------------------------------------------------------------------------------------------------
 
-void ingresarActores(eActor actores[],int len)
+void ingresarActores(eActor this[],int len)
 {
     int indice;
 
-      indice = indiceLibreActores(actores,len);
+      indice = indiceLibreActores(this,len);
 
         if(indice != -1)
         {
-            actores[indice].codigo = idAuto(actores,len,1);
-            while(getString(actores[indice].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
-            while(getString(actores[indice].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
-            while(getOneChar(&actores[indice].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
-            while(getInt(&actores[indice].idNacinalidad,"Ingrese la Nacionalidad:\n[1] Argentina\n[2] Chile\n[3]Bolivia\n[4]Estadoos Unidos\n[5]Inglaterrea\nopcion: ","Error,No ingreso niguna de las opciones",1,5)!=0);
-            actores[indice].estado = OCUPADO;
+            this[indice].codigo = idAuto(this,len,1);
+            while(getString(this[indice].nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+            while(getString(this[indice].apellido,"Ingrese el Apellido: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+            while(getOneChar(&this[indice].sexo,"ingrese\n[M] = Masculino\n[F] = Femenino\n","No ingreso ninguna de las dos opciones",'m','f')!=0);
+            while(getInt(&this[indice].idNacinalidad,"Ingrese la Nacionalidad:\n[1] Argentina\n[2] Chile\n[3]Bolivia\n[4]Estadoos Unidos\n[5]Inglaterrea\nopcion: ","Error,No ingreso niguna de las opciones",1,5)!=0);
+            this[indice].estado = OCUPADO;
         }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-int idAuto(eActor actores[],int len,int valMenor)
+int idAuto(eActor this[],int len,int valMenor)
 {
     int indexAnterior;
     int idFinal;
 
-    indexAnterior = idMayor(actores,len,valMenor);
+    indexAnterior = idMayor(this,len,valMenor);
 
     idFinal = indexAnterior +1;
 
@@ -103,16 +103,16 @@ int idAuto(eActor actores[],int len,int valMenor)
 
 }
 
-int idMayor(eActor actores[],int len,int valMenor)
+int idMayor(eActor this[],int len,int valMenor)
 {
     int i;
     int mayor = valMenor-1;
 
     for(i=0;i<len;i++)
     {
-        if(mayor<actores[i].codigo)
+        if(mayor<this[i].codigo)
         {
-            mayor = actores[i].codigo;
+            mayor = this[i].codigo;
         }
     }
     return mayor;
@@ -120,14 +120,14 @@ int idMayor(eActor actores[],int len,int valMenor)
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-int indiceLibreActores(eActor actores[],int len)
+int indiceLibreActores(eActor this[],int len)
 {
     int i;
     int index = -1;
 
     for(i=0;i<len;i++)
     {
-        if(actores[i].estado == LIBRE)
+        if(this[i].estado == LIBRE)
         {
             index = i;
             break;

@@ -9,11 +9,11 @@ typedef struct
 
 }eElenco;
 
-void menuElencos(eElenco[],int te,ePelicula[],int tp,eGenero[],int tg,eActor[],int ta,eNacionalidad nacionalidades[],int tn);
+void menuElencos(eElenco[],int te,ePelicula[],int tp,eGenero[],int tg,eActor[],int ta,eNacionalidad[],int tn);
 void harcodeoElencos(eElenco[],int len);
 void inicializarElencos(eElenco[],int len);
 int indiceLibreElenco(eElenco[],int len);
-void ingreseElenco(eElenco[],int te,ePelicula[],int tp,eGenero[],int tg,eActor[],int ta,eNacionalidad nacionalidades[],int tn);
+void ingreseElenco(eElenco[],int te,ePelicula[],int tp,eGenero[],int tg,eActor[],int ta,eNacionalidad[],int tn);
 
 void listarElencos(eElenco[],int te,ePelicula[],int tp,eActor[],int ta);
 void mostrarUnElenco(eElenco[],int te,ePelicula[],int tp,eActor[],int ta);

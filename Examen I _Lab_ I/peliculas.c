@@ -4,7 +4,7 @@
 
 #include "peliculas.h"
 
-void harcodeoGeneros(eGenero generos[],int len)
+void harcodeoGeneros(eGenero this[],int len)
 {
     int id[]={1,2,3,4};
     char descripcion[][51]={"Accion","Terror", "Romance", "Suspenso"};
@@ -12,14 +12,14 @@ void harcodeoGeneros(eGenero generos[],int len)
 
     for(i=0;i<len;i++)
     {
-        generos[i].id = id[i];
-        strcpy(generos[i].descripcion,descripcion[i]);
+        this[i].id = id[i];
+        strcpy(this[i].descripcion,descripcion[i]);
     }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void harcodeoPeliculas(ePelicula peliculas[],int len)
+void harcodeoPeliculas(ePelicula this[],int len)
 {
     char descripcion[][51]={"destino final","Bajo la misma estrella","depredador","los juegos del hambre","El juego del miedo","IT","Viernes 13"};
     int duracion[] = {1,2,1,2,2,1,2};
@@ -31,24 +31,24 @@ void harcodeoPeliculas(ePelicula peliculas[],int len)
 
     for(i=0;i<len;i++)
     {
-        peliculas[i].codigo = idAutoPeliculas(peliculas,len,1);
-        strcpy(peliculas[i].descripcion,descripcion[i]);
-        peliculas[i].duracion = duracion[i];
-        peliculas[i].idGenero = idGenero[i];
-        peliculas[i].fecha.dia = diaAux[i];
-        peliculas[i].fecha.mes = mesAux[i];
-        peliculas[i].fecha.anio = anioAux[i];
+        this[i].codigo = idAutoPeliculas(this,len,1);
+        strcpy(this[i].descripcion,descripcion[i]);
+        this[i].duracion = duracion[i];
+        this[i].idGenero = idGenero[i];
+        this[i].fecha.dia = diaAux[i];
+        this[i].fecha.mes = mesAux[i];
+        this[i].fecha.anio = anioAux[i];
     }
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-void inicializarPeliculas(ePelicula peliculas[],int len)
+void inicializarPeliculas(ePelicula this[],int len)
  {
      int i;
      for(i=0;i<len;i++)
      {
-         peliculas[i].codigo = 0;
+         this[i].codigo = 0;
      }
  }
 /*
@@ -73,14 +73,14 @@ void ingresarPelicula(ePelicula peliculas[],int len)
 
 //---------------------------------------------------------------------------------------------------------------------------------
 */
-int indiceLibrePelicualas(ePelicula peliculas[],int len)
+int indiceLibrePelicualas(ePelicula this[],int len)
 {
     int i;
     int index = -1;
 
     for(i=0;i<len;i++)
     {
-        if(peliculas[i].codigo != 0)
+        if(this[i].codigo != 0)
         {
             index = i;
             break;
@@ -119,12 +119,12 @@ int buscarCodigoPeliculas(ePelicula peliculas[],int len,eGenero generos[],int tg
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-int idAutoPeliculas(ePelicula peliculas[],int len,int valMenor)
+int idAutoPeliculas(ePelicula this[],int len,int valMenor)
 {
     int indexAnterior;
     int idFinal;
 
-    indexAnterior = idMayorPeliculas(peliculas,len,valMenor);
+    indexAnterior = idMayorPeliculas(this,len,valMenor);
 
     idFinal = indexAnterior +1;
 
@@ -132,16 +132,16 @@ int idAutoPeliculas(ePelicula peliculas[],int len,int valMenor)
 
 }
 
-int idMayorPeliculas(ePelicula peliculas[],int len,int valMenor)
+int idMayorPeliculas(ePelicula this[],int len,int valMenor)
 {
     int i;
     int mayor = valMenor-1;
 
     for(i=0;i<len;i++)
     {
-        if(mayor<peliculas[i].codigo)
+        if(mayor<this[i].codigo)
         {
-            mayor = peliculas[i].codigo;
+            mayor = this[i].codigo;
         }
     }
     return mayor;

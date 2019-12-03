@@ -5,8 +5,7 @@ void menuElencos(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero g
     int opcion;
 
     do{
-            printf("Opciones:\n1- Generar Elenco.\n2- Listar Elenncos.\n3- Salir\nElija una Opcion: ");
-            scanf("%d",&opcion);
+            while(getInt(&opcion,"Opciones:\n1- Generar Elenco.\n2- Listar Elenncos.\n3- Salir\nElija una Opcion: ","Solo puede ingresar numeros del [1] al [3]\n",1,3)!=0);
             switch(opcion)
             {
             case 1:
@@ -17,19 +16,16 @@ void menuElencos(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero g
                 mostrarUnElenco(elencos,te,peliculas,tp,actores,ta);
                 system("pause");
                 break;
-            case 3:
-                printf("Salir\n");
-                break;
             default:
-                printf("No ingreso ninguna de las opciones\n");
+                printf("Salir\n");
             }
         system("cls");
-    }while(opcion != 2);
+    }while(opcion != 3);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
-void harcodeoElencos(eElenco elencos[],int len)
+void harcodeoElencos(eElenco this[],int len)
 {
     int codigoDePeliculaAux[] = {1,2,3,1,5};
     int codigoDeActorAux[] = {2,3,1,4,5};
@@ -37,34 +33,34 @@ void harcodeoElencos(eElenco elencos[],int len)
     int i;
     for(i=0;i<len;i++)
     {
-        elencos[i].codigoDeActor = codigoDeActorAux[i];
-        elencos[i].codigoDePelicula = codigoDePeliculaAux[i];
-        elencos[i].valorContrato = valorContratoAux[i];
+        this[i].codigoDeActor = codigoDeActorAux[i];
+        this[i].codigoDePelicula = codigoDePeliculaAux[i];
+        this[i].valorContrato = valorContratoAux[i];
     }
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 
-void inicializarElencos(eElenco elencos[],int len)
+void inicializarElencos(eElenco this[],int len)
  {
      int i;
      for(i=0;i<len;i++)
      {
-         elencos[i].codigoDePelicula = 0;
-         elencos[i].codigoDeActor = 0;
+         this[i].codigoDePelicula = 0;
+         this[i].codigoDeActor = 0;
      }
  }
 
 //---------------------------------------------------------------------------------------------------------------------
 
-int indiceLibreElenco(eElenco elencos[],int len)
+int indiceLibreElenco(eElenco this[],int len)
 {
     int i;
     int index = -1;
 
     for(i=0;i<len;i++)
     {
-        if(elencos[i].codigoDePelicula == 0 && elencos[i].codigoDeActor == 0)
+        if(this[i].codigoDePelicula == 0 && this[i].codigoDeActor == 0)
         {
             index = i;
             break;
@@ -89,8 +85,8 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
     codePelicula = validarCodigoDePelicula(peliculas,tp,generos,tg);
     codeActor = validarCodigoDeActores(actores,ta,nacionalidades,tn);
 
-    //if(elencoExistente(elencos,te,codePelicula,codeActor)==1)
-    //{
+    if(elencoExistente(elencos,te,codePelicula,codeActor)!=0)
+    {
         for(i=0;i<te;i++)
         {
             if(codePelicula == peliculas[i].codigo)
@@ -103,7 +99,7 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
                         {
                             auxElenco.codigoDeActor = actores[j].codigo;
 
-                            while(getInt(&auxElenco.valorContrato,"ingrese el valor del Contrato: ","Error,el contrato no puede pasar de 1.000.000",0,1000000)!=0);
+                            while(getIntIlimit(&auxElenco.valorContrato,"ingrese el valor del Contrato: ","Error,solo se pueden ingresar numeros",0)!=0);
 
                             if(confirmar("Confirmar:","Canselar:")==0)
                             {
@@ -111,7 +107,9 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
                                 elencos[index].codigoDeActor = auxElenco.codigoDeActor;
                                 elencos[index].valorContrato = auxElenco.valorContrato;
 
-                            }else{
+                            }
+                            else
+                            {
                                 printf("La operecion fue cancelada.\n");
                             }
                         }
@@ -119,9 +117,12 @@ void ingreseElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eGenero
             }
         }
 
-    //}else{
-        //printf("\nEl elenco ya existe\n");
-    //}
+    }
+    else
+    {
+        printf("\nEl elenco ya existe\n");
+        system("pause");
+    }
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -195,18 +196,19 @@ void mostrarUnElenco(eElenco elencos[],int te,ePelicula peliculas[],int tp,eActo
 
 }
 
-int elencoExistente(eElenco elencos[],int te,int codePelicula,int codeActor)
+int elencoExistente(eElenco elenco[],int te,int codePelicula,int codeActor)
 {
     int i;
-    int retorno;
+    int retorno = -1;
 
     for(i=0;i<te;i++)
     {
-        if(elencos[i].codigoDePelicula == codePelicula && elencos[i].codigoDeActor==codeActor)
+        if(elenco[i].codigoDePelicula == codePelicula)
         {
-            retorno = 1;
-        }else{
-            retorno = 0;
+            if(elenco[i].codigoDeActor == codeActor)
+            {
+                retorno = 0;
+            }
         }
     }
 
@@ -382,10 +384,9 @@ int cuantoRecaudoTalActorConRomanticas(eElenco elencos[],int te,eActor actores[]
 
 void actoresSinTrabajo(eElenco elencos[],int te,eActor actores[],int ta,eNacionalidad nacionalidad[],int tn)
 {
-    int validar = 0;
+    int validar = -1;
     int i;
     int j;
-    int k;
 
     for(i=0;i<te;i++)
     {
@@ -395,10 +396,6 @@ void actoresSinTrabajo(eElenco elencos[],int te,eActor actores[],int ta,eNaciona
             {
                 validar=0;
                 break;
-            }
-            else
-            {
-                validar = -1;
             }
         }
         if(validar!=0)

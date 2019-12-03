@@ -40,6 +40,38 @@ int getInt(int* valor, char message[],char eMessage[], int lowLimit, int hiLimit
     return retorno;
 }
 
+
+int getIntIlimit(int* valor, char message[],char eMessage[], int lowLimit)
+{
+    int retorno;
+    char numeroAux[100];
+    int validador;
+
+    printf("%s", message);
+    fflush(stdin);
+    scanf("%s", numeroAux);
+
+    validador = validarNumero(numeroAux);
+
+    *valor=atoi(numeroAux);
+
+    if(validador==0)
+    {
+        if(*valor<lowLimit)
+        {
+            printf("%s\n", eMessage);
+            retorno = -1;
+
+        }else{
+              retorno = 0;
+        }
+    }else{
+        printf("%s\n", eMessage);
+        retorno = -1;
+    }
+    return retorno;
+}
+
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 int getFloat(float* valor,char message[],char eMessage[], float lowLimit, float hiLimit)
@@ -74,6 +106,38 @@ int getFloat(float* valor,char message[],char eMessage[], float lowLimit, float 
     return retorno;
 }
 
+
+int getFloatIlimit(float* valor,char message[],char eMessage[], float lowLimit)
+{
+    int retorno;
+    char numeroAux[100];
+    int validador;
+
+
+    printf("%s", message);
+    fflush(stdin);
+    scanf("%s", numeroAux);
+
+    validador = validarNumero(numeroAux);
+
+    *valor=atof(numeroAux);
+
+    if(validador==0)
+    {
+        if(*valor<lowLimit)
+        {
+            printf("%s\n", eMessage);
+            retorno = -1;
+
+        }else{
+              retorno = 0;
+        }
+    }else{
+        printf("%s\n", eMessage);
+        retorno = -1;
+    }
+    return retorno;
+}
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 int validarNumero(char* numeroChar)
@@ -221,7 +285,7 @@ int validarLetrasEnString(char palabra[],int tam)
     {
         validador = isdigit(palabra[i]);
 
-        if(validador != 0)
+        if(validador == 1)
         {
             retorno = -1;
         }
